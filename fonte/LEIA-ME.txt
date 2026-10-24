@@ -1,0 +1,71 @@
+FILTRO DE LOOT PARA D2 SURVIVORS  (versão 1.22.0)
+Feito por OrgunBr. Ferramenta de fã, não oficial. Sem garantia: use por sua conta e risco.
+
+O QUE É
+Um filtro de loot no estilo dos filtros de Path of Exile. Dentro do jogo, no menu do ESC, aparece uma entrada FILTER.
+Nela você marca builds de itens (53 prontas, de todas as classes), cria as suas próprias, escolhe uniques à mão,
+e o filtro decide, para cada item que você pega, se ele fica ou se é vendido.
+Isto NÃO muda o jogo de nenhum outro jeito (não mexe em rerolls, ímã, atributos, etc.).
+
+O QUE PRECISA
+- O jogo instalado no computador (a versão para Windows). Não funciona com o jogo no navegador.
+- Nada mais: o pacote já traz tudo. Não precisa instalar o Node nem ter internet.
+
+COMO INSTALAR
+1. Feche o jogo completamente.
+2. Descompacte este pacote. Pode deixar a pasta dentro da pasta do jogo (onde está o "D2 Survivors.exe") ou em qualquer outro lugar.
+3. Dê dois cliques em INSTALAR.bat. Ele acha o jogo sozinho (se não achar, pede o caminho), guarda uma cópia do arquivo
+   original do jogo, aplica o filtro e cria na área de trabalho o atalho "D2 Survivors (filtro)".
+4. Depois de instalado, pode apagar a pasta do pacote. O filtro fica em %LOCALAPPDATA%\D2-Survivors-Filtro
+   (fora da pasta do jogo, porque uma atualização do jogo pode apagar a pasta dele).
+
+COMO JOGAR
+O filtro fica DENTRO do arquivo do jogo. Por isso, depois de instalado, o jogo abre com o filtro por qualquer caminho (o .exe
+normal, o menu iniciar, o atalho "D2 Survivors (filtro)"). O problema são as ATUALIZAÇÕES: o jogo é uma versão alfa e se atualiza
+várias vezes por dia, e cada atualização troca o arquivo do jogo e apaga o filtro, sem avisar. Há duas formas de resolver:
+
+A) MODO AUTOMÁTICO (o INSTALAR.bat pergunta: "Ligar o modo automático? [S/N]"). Cria uma tarefa agendada do Windows, sem janela,
+   que a cada 2 minutos olha se o jogo foi atualizado e, se o jogo estiver FECHADO, reaplica o filtro. Com isso você abre o jogo
+   como sempre, pelo .exe normal. Depois de uma atualização, o filtro volta sozinho assim que o jogo estiver fechado (até 2 min).
+   Limite: se a atualização acontecer com o jogo aberto (botão "Restart to update"), aquela sessão roda sem o filtro; feche o
+   jogo, espere 2 minutos e abra de novo. O registro do que o vigia fez fica em %LOCALAPPDATA%\D2-Survivors-Filtro\vigia.log.
+B) ATALHO "D2 Survivors (filtro)" (sempre criado). Abra o jogo por ele. Uma janela preta fica aberta (minimizada) enquanto você
+   joga: é ela que reaplica o filtro quando o jogo se atualiza. Quando o jogo mostrar "Restart to update", aperte e espere: ela
+   abre o jogo de novo, já com o filtro.
+Pode usar os dois juntos. Sem nenhum dos dois, o filtro vale só até a próxima atualização do jogo (aí é só rodar INSTALAR.bat de novo).
+
+COMO USAR O FILTRO (o painel está em inglês)
+No jogo: ESC, depois FILTER.
+- Abas por classe: marque as builds que você quer farmar. Marcar significa MANTER. Os itens que nenhuma build marcada quer são
+  considerados "para vender". O herói que você joga não importa.
+- Copy: faz uma cópia editável de uma build na aba My builds. My builds: crie as suas (equipamento de UM personagem:
+  1 capacete, 1 armadura, 1 luva, 1 cinto, 1 bota, 2 amuletos, 4 anéis, 2 armas e 2 escudos; cada slot só aceita itens dele).
+- Uniques by hand: escolha uniques específicos pelo nome (ou pela base: "shako" acha a Harlequin Crest).
+- GOLD FARM (sell all that drops): marca TUDO para vender (equipados, itens do baú e do acampamento nunca são vendidos).
+  Com nada marcado, o GOLD FARM liga sozinho.
+- Clear filters: desmarca tudo (nunca apaga as suas builds).
+- A etiqueta no alto mostra TEST (só registra, não vende nada) ou LIVE (vende de verdade).
+
+O FILTRO COMEÇA EM MODO DE TESTE
+No modo TEST ele só anota o que faria, em %APPDATA%\D2 Survivors\filter-data\filter-decisions.jsonl (um item por linha, com o
+motivo). Jogue uma partida assim, olhe esse arquivo com o Bloco de Notas e veja se as decisões fazem sentido ANTES de ligar a venda.
+
+PARA LIGAR A VENDA AUTOMÁTICA
+1. Faça um backup do seu save: na janela SAVES do jogo, exporte o código do save (D2S1:...) e guarde.
+2. No painel, marque "Auto-sell for real" e clique de novo para confirmar. A etiqueta muda para LIVE.
+3. Cada item que o filtro julgar "sell" é vendido na hora em que você o pega, pelo mesmo caminho da venda manual do jogo
+   (você recebe o ouro e o item aparece em Buy Back no vendedor, por 4x o preço, até a próxima partida do herói).
+4. Nunca é vendido: item equipado, item no baú, qualquer coisa no acampamento, item de missão, item que o jogo não deixa vender,
+   item que o filtro não consegue ler.
+Para voltar ao teste, desmarque "Auto-sell for real".
+
+SE O JOGO ATUALIZAR E O FILTRO PARAR
+O jogo é uma versão alfa e se atualiza várias vezes por dia. Se uma atualização mudar o código do jogo, o atalho avisa que não
+conseguiu aplicar o filtro e NÃO abre o jogo por ele (o jogo não é alterado). Abra o jogo pelo atalho normal dele e avise o OrgunBr.
+
+COMO DESINSTALAR
+Feche o jogo e dê dois cliques em desinstalar.bat (fica em %LOCALAPPDATA%\D2-Survivors-Filtro). Ele devolve o arquivo original do jogo
+e tira o atalho e a tarefa do modo automático. A sua seleção e o registro de decisões ficam em %APPDATA%\D2 Survivors\filter-data (apague se quiser).
+
+O QUE O FILTRO NUNCA FAZ
+Não mexe no seu save. O filtro não envia nada para a internet. Só lê e escreve nas pastas citadas acima.
