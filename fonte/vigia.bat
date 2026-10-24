@@ -1,6 +1,7 @@
 @echo off
-rem Vigia do filtro (modo automático): roda escondido, de tempos em tempos, pela tarefa agendada criada pelo INSTALAR.bat.
+rem Vigia do filtro (modo automático) / filter watcher (automatic mode): roda escondido, de tempos em tempos, pela tarefa agendada criada pelo INSTALAR.bat.
 rem Se o jogo está fechado e o arquivo dele mudou desde a última vez (uma atualização trocou o app.asar), reaplica o filtro.
+rem If the game is closed and its file changed since last time (an update replaced app.asar), it re-applies the filter.
 rem Quase sempre termina na hora: só chama o patcher quando o tamanho ou a data do arquivo do jogo mudou.
 cd /d "%~dp0"
 
@@ -22,14 +23,14 @@ if "%SIG%"=="%LAST%" exit /b 0
 
 rem O registro não passa de uns 200 KB.
 for %%L in ("%~dp0vigia.log") do if exist "%%~fL" if %%~zL gtr 200000 del "%%~fL"
->>"%~dp0vigia.log" echo [%date% %time%] o arquivo do jogo mudou ^(%SIG%^): aplicando o filtro
+>>"%~dp0vigia.log" echo [%date% %time%] o arquivo do jogo mudou / the game file changed ^(%SIG%^): aplicando o filtro / applying the filter
 
 set "D2S_MODE=filter"
 set "D2S_FILTER_BUNDLE=%~dp0d2filter.js"
 set "D2S_FILTER_UI_BUNDLE=%~dp0d2filter-ui.js"
 "%~dp0node.exe" "%~dp0apply-patches.mjs" "%ASAR%" >>"%~dp0vigia.log" 2>&1
 if errorlevel 1 (
-  >>"%~dp0vigia.log" echo [%date% %time%] NAO FOI POSSIVEL aplicar o filtro ^(veja acima^). O jogo nao foi alterado.
+  >>"%~dp0vigia.log" echo [%date% %time%] NAO FOI POSSIVEL aplicar o filtro / COULD NOT apply the filter ^(see above^). O jogo nao foi alterado / The game was not changed.
 )
 
 rem Guarda a assinatura do arquivo como ele ficou, para não tentar de novo até ele mudar outra vez.

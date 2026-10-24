@@ -1,8 +1,9 @@
 @echo off
 chcp 65001 >nul
-title Filtro de loot para D2 Survivors
+title Filtro de loot para D2 Survivors / Loot filter for D2 Survivors
 rem Aplica o filtro no jogo (se faltar) e abre o jogo. Esta janela fica aberta (minimizada) enquanto você joga:
 rem quando o jogo se atualiza, ela aplica o filtro de novo na versão nova e, depois do botão "Restart to update", abre o jogo outra vez.
+rem Applies the filter (if missing) and opens the game. Keep this window open (minimized) while you play.
 cd /d "%~dp0"
 
 set "NODE=%~dp0node.exe"
@@ -20,6 +21,7 @@ set "FLAG=%~dp0relaunch.flag"
 "%SystemRoot%\System32\tasklist.exe" /fi "imagename eq D2 Survivors.exe" 2>nul | "%SystemRoot%\System32\find.exe" /i "D2 Survivors.exe" >nul
 if not errorlevel 1 (
   echo O jogo já está aberto. Feche o jogo completamente e abra de novo por este atalho.
+  echo The game is already open. Close it completely and open it again from this shortcut.
   pause
   exit /b 1
 )
@@ -27,6 +29,8 @@ if not errorlevel 1 (
 if not exist "%GAME_DIR%\D2 Survivors.exe" (
   echo Não encontrei o jogo em "%GAME_DIR%".
   echo Rode o INSTALAR.bat de novo, ou abra o config.txt desta pasta e corrija o caminho.
+  echo I did not find the game in "%GAME_DIR%".
+  echo Run INSTALAR.bat again, or open config.txt in this folder and fix the path.
   pause
   exit /b 1
 )
@@ -38,6 +42,9 @@ if errorlevel 1 (
   echo Não consegui aplicar o filtro. O jogo NÃO foi alterado e não foi aberto por aqui.
   echo Provavelmente o jogo foi atualizado e esta versão do filtro ainda não serve para ele. Avise o OrgunBr.
   echo Enquanto isso, você pode abrir o jogo normalmente pelo atalho dele.
+  echo I could not apply the filter. The game was NOT changed and was not opened from here.
+  echo The game was probably updated and this version of the filter does not fit it yet. Tell OrgunBr.
+  echo Meanwhile you can open the game normally from its own shortcut.
   pause
   exit /b 1
 )
@@ -47,7 +54,7 @@ set "D2S_RELAUNCH_FLAG=%FLAG%"
 start "" /wait "%GAME_DIR%\D2 Survivors.exe"
 
 rem O jogo fechou. Espera (até 5 minutos) o jogo e o instalador de atualização terminarem.
-echo Esperando o jogo e uma possível atualização terminarem...
+echo Esperando o jogo e uma possível atualização terminarem... / Waiting for the game and a possible update to finish...
 "%SystemRoot%\System32\timeout.exe" /t 3 /nobreak >nul
 set /a WAITED=0
 :wait
@@ -60,6 +67,7 @@ if not errorlevel 1 if %WAITED% lss 300 (
 
 if exist "%FLAG%" (
   echo Atualização instalada. Aplicando o filtro na versão nova e abrindo o jogo de novo.
+  echo Update installed. Applying the filter to the new version and opening the game again.
   goto launch
 )
 

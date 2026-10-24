@@ -1,5 +1,6 @@
 FILTRO DE LOOT PARA D2 SURVIVORS  (versão 1.22.0)
 Feito por OrgunBr. Ferramenta de fã, não oficial. Sem garantia: use por sua conta e risco.
+(English version of this file: README-EN.txt)
 
 O QUE É
 Um filtro de loot no estilo dos filtros de Path of Exile. Dentro do jogo, no menu do ESC, aparece uma entrada FILTER.
@@ -24,7 +25,7 @@ O filtro fica DENTRO do arquivo do jogo. Por isso, depois de instalado, o jogo a
 normal, o menu iniciar, o atalho "D2 Survivors (filtro)"). O problema são as ATUALIZAÇÕES: o jogo é uma versão alfa e se atualiza
 várias vezes por dia, e cada atualização troca o arquivo do jogo e apaga o filtro, sem avisar. Há duas formas de resolver:
 
-A) MODO AUTOMÁTICO (o INSTALAR.bat pergunta: "Ligar o modo automático? [S/N]"). Cria uma tarefa agendada do Windows, sem janela,
+A) MODO AUTOMÁTICO (o INSTALAR.bat pergunta: "Ligar o modo automático?"; responda S ou Y para sim). Cria uma tarefa agendada do Windows, sem janela,
    que a cada 2 minutos olha se o jogo foi atualizado e, se o jogo estiver FECHADO, reaplica o filtro. Com isso você abre o jogo
    como sempre, pelo .exe normal. Depois de uma atualização, o filtro volta sozinho assim que o jogo estiver fechado (até 2 min).
    Limite: se a atualização acontecer com o jogo aberto (botão "Restart to update"), aquela sessão roda sem o filtro; feche o
